@@ -1,6 +1,6 @@
 
 const countryDOM = document.getElementById("country");
-// console.log([countryDOM]);
+console.log([countryDOM]);
 const nameDOM = document.getElementById("name");
 const areaDOM = document.getElementById("area");
 const populationDOM = document.getElementById("population");
@@ -8,6 +8,7 @@ const currencyDOM = document.getElementById("currency");
 const languageDOM = document.getElementById("language");
 const flagDOM = document.getElementById("flag");
 const armsDOM = document.getElementById("arms");
+const borderDOM = document.getElementById("border");
 const buttonDOM = document.getElementById("button");
 
 
@@ -29,9 +30,9 @@ fetch('https://restcountries.com/v3.1/all')
 
 const showCountryInfo = () => {
     const countryName = countryDOM.value;
-    console.log(countryName);
+    console.log();
 
-    fetch('https://restcountries.com/v3.1/name/Germany')
+    fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then((response) => {
             //Gautą informaciją konvertuojame į JSON
 
@@ -54,7 +55,8 @@ const showCountryInfo = () => {
             const language = data[0].languages;
             languageDOM.value = language[Object.keys(language)];
 
-            // console.log(data[0].borders);
+
+            borderDOM.value = data[0].borders;
             // ['BLR', 'LVA', 'POL', 'RUS']
 
             const flag = data[0].flags;
