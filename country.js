@@ -1,6 +1,5 @@
 
 const countryDOM = document.getElementById("country");
-console.log([countryDOM]);
 const nameDOM = document.getElementById("name");
 const areaDOM = document.getElementById("area");
 const populationDOM = document.getElementById("population");
@@ -16,7 +15,6 @@ const buttonDOM = document.getElementById("button");
 fetch('https://restcountries.com/v3.1/all')
     .then((response) => {
         //Gautą informaciją konvertuojame į JSON
-
         return response.json();
     })
     .then((data) => {
@@ -35,11 +33,9 @@ const showCountryInfo = () => {
     fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then((response) => {
             //Gautą informaciją konvertuojame į JSON
-
             return response.json();
         })
         .then((data) => {
-
             const countryName = data[0].altSpellings;
             nameDOM.value = countryName[2];
             // ['LT', 'Republic of Lithuania', 'Lietuvos Respublika']
@@ -64,9 +60,7 @@ const showCountryInfo = () => {
 
             const arms = data[0].coatOfArms;
             armsDOM.src = arms[Object.keys(arms)[0]]
-
         });
-
 };
 buttonDOM.onclick = showCountryInfo;
 
