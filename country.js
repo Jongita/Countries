@@ -34,7 +34,7 @@ fetch('https://restcountries.com/v3.1/all')
 const showCountryInfo = () => {
     const countryName = countryDOM.value;
     loading.style.display = "block";
-    fetch(`https://restcountriees.com/v3.1/name/${countryName}`)
+    fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then((response) => {
             //Gautą informaciją konvertuojame į JSON
             return response.json();
