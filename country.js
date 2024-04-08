@@ -40,6 +40,15 @@ const showCountryInfo = () => {
             return response.json();
         })
         .then((data) => {
+            // jei serveris grazino rezultata, taciau resultatas yra neigiamas
+            if (data.success !== undefined) {
+                let e = new Error("Informacija nerasta")
+                e.name = "nerasta";
+                // komanda throw nutraukia vykdyma
+                throw e;
+            }
+            // jei nebuvo klaidos kodas bus tesiamas
+
             const countryName = data[0].altSpellings;
             nameDOM.value = countryName[2];
             // ['LT', 'Republic of Lithuania', 'Lietuvos Respublika']
@@ -71,7 +80,13 @@ const showCountryInfo = () => {
             console.log(`Klaida: ${e}`)
             loading.style.display = "none";
             // parodome pranesima apie klaida
-            pranesimas.innerHTML = `Klaida: ${e}`;
+            if (e.name == "TypeError") {
+                pranesimas.innerHTML = `Klaida, serveris neveikia arba nera interneto`;
+            } else if (e.name == 'nerasta') {
+                pranesimas.innerHTML = `Klaida, serveris neveikia arba nera interneto`;
+            }
+            // pranesimas.innerHTML = `Klaida: ${e.name}`;
+            // kadangi error yra klases objektas is jo e.name galime pasiimti klaidas, kurios bus skirtingos
             pranesimas.style.display = "block";
         })
 
