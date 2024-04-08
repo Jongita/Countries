@@ -9,7 +9,11 @@ const flagDOM = document.getElementById("flag");
 const armsDOM = document.getElementById("arms");
 const borderDOM = document.getElementById("border");
 const buttonDOM = document.getElementById("button");
-
+const loading = document.getElementById("loading");
+const pranesimas = document.getElementById("pranesimas");
+pranesimas.style.display = "none";
+const kaimynaiName = document.getElementById("kaimynai name")
+const kaimynaiPopulation = document.getElementById("kaimynai population")
 
 
 fetch('https://restcountries.com/v3.1/all')
@@ -24,13 +28,13 @@ fetch('https://restcountries.com/v3.1/all')
             o.textContent = arr.name.common;
             countryDOM.appendChild(o);
         })
-    });
 
+    });
+// gali buti, kad bus nuluzes serveris, blogas URL arba nerado ne vieno 
 const showCountryInfo = () => {
     const countryName = countryDOM.value;
-    console.log();
-
-    fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+    loading.style.display = "block";
+    fetch(`https://restcountriees.com/v3.1/name/${countryName}`)
         .then((response) => {
             //Gautą informaciją konvertuojame į JSON
             return response.json();
@@ -51,17 +55,27 @@ const showCountryInfo = () => {
             const language = data[0].languages;
             languageDOM.value = language[Object.keys(language)];
 
-
-            borderDOM.value = data[0].borders;
-            // ['BLR', 'LVA', 'POL', 'RUS']
-
             const flag = data[0].flags;
             flagDOM.src = flag[Object.keys(flag)[0]];
 
             const arms = data[0].coatOfArms;
             armsDOM.src = arms[Object.keys(arms)[0]]
-        });
-};
-buttonDOM.onclick = showCountryInfo;
 
+            borderDOM.value = data[0].borders;
+            // ['BLR', 'LVA', 'POL', 'RUS']
+
+            loading.style.display = "none";
+        })
+        // Kai ivyks klaida vykdysime pranesima
+        .catch((e) => {
+            console.log(`Klaida: ${e}`)
+            loading.style.display = "none";
+            // parodome pranesima apie klaida
+            pranesimas.innerHTML = `Klaida: ${e}`;
+            pranesimas.style.display = "block";
+        })
+
+};
+
+buttonDOM.onclick = showCountryInfo;
 
