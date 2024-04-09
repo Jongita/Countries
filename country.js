@@ -34,7 +34,7 @@ fetch('https://restcountries.com/v3.1/all')
 const showCountryInfo = () => {
     const countryName = countryDOM.value;
     loading.style.display = "block";
-    fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+    fetch(`https://restcountries.com/v3.1/name/ffff`)
         .then((response) => {
             //Gautą informaciją konvertuojame į JSON
             return response.json();
@@ -76,7 +76,7 @@ const showCountryInfo = () => {
         })
         // Kai ivyks klaida vykdysime pranesima
         .catch((e) => {
-            console.log(`Klaida: ${e}`)
+            console.log(`Klaida: ${e.message}`)
             loading.style.display = "none";
             // parodome pranesima apie klaida
             if (e.name == "TypeError") {
