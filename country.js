@@ -93,9 +93,3 @@ const showCountryInfo = () => {
 
 buttonDOM.onclick = showCountryInfo;
 
-const errorM = {
-    "status": 404,
-    "message": "Not Found"
-}
-
-console.log();
