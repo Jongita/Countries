@@ -40,11 +40,10 @@ const showCountryInfo = () => {
             return response.json();
         })
         .then((data) => {
-            // jei serveris grazino rezultata, taciau resultatas yra neigiamas
-            if (data.success !== undefined) {
+
+            if (data.status == '404') {
                 let e = new Error("Informacija nerasta")
-                e.name = "nerasta";
-                // komanda throw nutraukia vykdyma
+                pranesimas.innerHTML = new Error("Salis nerasta")
                 throw e;
             }
             // jei nebuvo klaidos kodas bus tesiamas
@@ -94,3 +93,9 @@ const showCountryInfo = () => {
 
 buttonDOM.onclick = showCountryInfo;
 
+const errorM = {
+    "status": 404,
+    "message": "Not Found"
+}
+
+console.log();
