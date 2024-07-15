@@ -1,12 +1,11 @@
 
 const countryDOM = document.getElementById("country");
-const nameDOM = document.getElementById("name");
 const areaDOM = document.getElementById("area");
 const populationDOM = document.getElementById("population");
 const currencyDOM = document.getElementById("currency");
 const languageDOM = document.getElementById("language");
-const flagDOM = document.getElementById("flag");
-const armsDOM = document.getElementById("arms");
+const flag = document.getElementById("flag");
+const arms = document.getElementById("arms");
 const borderDOM = document.getElementById("border");
 const buttonDOM = document.getElementById("button");
 const loading = document.getElementById("loading");
@@ -18,7 +17,6 @@ const kaimynaiPopulation = document.getElementById("kaimynai population")
 
 fetch('https://restcountries.com/v3.1/all')
     .then((response) => {
-        //Gautą informaciją konvertuojame į JSON
         return response.json();
     })
     .then((data) => {
@@ -30,13 +28,12 @@ fetch('https://restcountries.com/v3.1/all')
         })
 
     });
-// gali buti, kad bus nuluzes serveris, blogas URL arba nerado ne vieno 
+
 const showCountryInfo = () => {
     const countryName = countryDOM.value;
     loading.style.display = "block";
     fetch(`https://restcountries.com/v3.1/name/${countryName}`)
         .then((response) => {
-            //Gautą informaciją konvertuojame į JSON
             return response.json();
         })
         .then((data) => {
@@ -46,49 +43,32 @@ const showCountryInfo = () => {
                 pranesimas.innerHTML = e.message;
                 throw e;
             }
-            // jei nebuvo klaidos kodas bus tesiamas
-
-            const countryName = data[0].altSpellings;
-            nameDOM.value = countryName[2];
-            // ['LT', 'Republic of Lithuania', 'Lietuvos Respublika']
 
             populationDOM.value = data[0].population;
             areaDOM.value = data[0].area;
 
-
-            const currencyTotal = data[0].currencies;
-            currencyDOM.value = Object.keys(currencyTotal)[0];
-
+            currencyDOM.value = data[0].currencies ? Object.values(data[0].currencies).map((c) => c.name).join(', ') : '-';
 
             const language = data[0].languages;
             languageDOM.value = language[Object.keys(language)];
 
-            const flag = data[0].flags;
-            flagDOM.src = flag[Object.keys(flag)[0]];
+            flag.src = data[0].flags.png || '-';
+            arms.src = data[0].coatOfArms.png || '-';
 
-            const arms = data[0].coatOfArms;
-            armsDOM.src = arms[Object.keys(arms)[0]]
-
-            borderDOM.value = data[0].borders;
-            // ['BLR', 'LVA', 'POL', 'RUS']
+            borderDOM.value = data[0].borders !== undefined ? data[0].borders : 'Kaimynų neturi';
 
             loading.style.display = "none";
         })
-        // Kai ivyks klaida puslapio pavadinime 
         .catch((e) => {
             // console.log(`Klaida: ${e.message}`)
             loading.style.display = "none";
-            // parodome pranesima apie klaida
             if (e.name == "TypeError") {
-                pranesimas.innerHTML = `Klaida, serveris neveikia arba nera interneto`;
+                pranesimas.innerHTML = `Klaida, serveris neveikia arba nėra interneto.`;
             } else if (e.name == 'nerasta') {
-                pranesimas.innerHTML = `Klaida, serveris neveikia arba nera interneto`;
+                pranesimas.innerHTML = `Klaida ieškant šalies.`;
             }
-            // pranesimas.innerHTML = `Klaida: ${e.name}`;
-            // kadangi error yra klases objektas is jo e.name galime pasiimti klaidas, kurios bus skirtingos
             pranesimas.style.display = "block";
         })
-
 };
 
 buttonDOM.onclick = showCountryInfo;

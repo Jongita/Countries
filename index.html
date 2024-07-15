@@ -37,18 +37,17 @@
         <div class="row">
             <div class="col-md-6 mt-5">
                 <div class="card">
-                    <div class="card-header">Saliu paieska</div>
+                    <div class="card-header">Šalių paieška</div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Iveskite sali:</label>
+                            <label class="form-label" style="font-weight: bold;">Pasirinkite šalį:</label>
                             <select class="form-control" id="country">
-
                             </select>
+                            <hr>
                         </div>
                         <div class="mb-3">
                             <div class="alert alert-danger" id="pranesimas"></div>
-                            <label class="form-label">Pavadinimas</label>
-                            <input type="text" class="form-control" id="name">
+                            <label class="form-label" style="font-weight: bold;">Informacija apie šalį:</label><br>
                             <label class="form-label">Populiacija</label>
                             <input type="text" class="form-control" id="population">
                             <label class="form-label">Plotas, m2</label>
@@ -61,17 +60,23 @@
                             <input type="text" class="form-control" id="border">
                         </div>
                         <button class="btn btn-success" id="button">Ieškoti</button>
-
-
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6 mt-5">
-                <div class="card-header">Veliava</div>
-                <img src="" alt="xxx" id="flag">
-                <div class="card-header">Herbas</div>
-                <img src="" alt="xxx" id="arms" style="width: 300px;">
+                <div class="card mb-3">
+                    <div class="card-header" style="font-weight: bold;">Vėliava</div>
+                    <div class="card-body text-center">
+                        <img src="" alt="" id="flag" class="img-fluid img-thumbnail" style="width: 300px; height: auto;">
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header" style="font-weight: bold;">Herbas</div>
+                    <div class="card-body text-center">
+                        <img src="" alt="" id="arms" class="img-fluid img-thumbnail" style="width: 300px; height: auto;">
+                    </div>
+                </div>
             </div>
             <div class="card-body" id="kaimynai">
                 <ul class="list-group mb-3" id="kaimynai name"></ul>
@@ -82,11 +87,3 @@
 </body>
 
 </html>
-
-<!-- // 1. Šalies pavadinimą,
-// 2. Populiaciją
-// 3. Šalies plotą
-// 4. Valiutą
-// 5. Kalbą
-// 6. Vėliavą
-// 7. Herbą -->
