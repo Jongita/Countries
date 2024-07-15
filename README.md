@@ -13,9 +13,9 @@ _website design project_
 
 This project is for educational porpuses only. Pull request are welcome, but priority for project authors! Thank you for your cooperation!
 
-Site published at: https://jongita.github.io/CollabNew/
+Site published at: jongita.github.io/Countries/
 
-Design: [Collab project](<https://www.figma.com/file/9mV6rCFOEd1ptuZ4JBovVS/Collab-landing-page-design-(Community)?type=design&node-id=1-971&mode=design&t=3oCqevyBZvzIXGmx-0>)
+Design: N/A
 
 ## 🎯 Project features/goals
 
@@ -46,7 +46,7 @@ Would like to run this project locally? Open terminal and follow these steps:
 
 1. Clone the repo
     ```sh
-    git clone https://jongita.github.io/CollabNew/
+    git clone jongita.github.io/Countries/
     ```
 2. Install NPM packages
     ```sh
